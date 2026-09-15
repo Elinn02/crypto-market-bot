@@ -15,9 +15,15 @@ from telegram.ext import (
 import market_data
 import news_monitor
 import cmc_data
+import keep_alive
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Start the keep-alive port immediately on import, before anything else,
+# so Render's port scan detects it right away instead of waiting for the
+# bot/token setup to finish.
+keep_alive.start()
 
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
 
